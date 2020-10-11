@@ -10,10 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PlayAgainActivity"></activity>
-        <activity android:name=".InstructionActivity" />
         <activity android:name=".GuitarPage" />
-        <activity android:name=".ConectPage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ConnexionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

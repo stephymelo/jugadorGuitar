@@ -82,6 +82,7 @@ public class TCPSingleton extends Thread  {
     }
 
     public String getMensaje() {
+
         return mensaje;
     }
 
