@@ -9,12 +9,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+
 public class GuitarPage extends AppCompatActivity {
-    ImageView blueB, greenB, orangeB, blueBOn, greenBOn, orangeBOn;
-    VerifNota tapNota;
+    private ImageView blueB, greenB, orangeB, blueBOn, greenBOn, orangeBOn;
+    private VerifNota tapNota;
     boolean tapNotaJugador;
+    private String json;
     private TCPSingleton tcp;
     private boolean isGreen, isOrange, isBlue;
+    private Gson gson;
 
 
     @Override
@@ -28,6 +32,8 @@ public class GuitarPage extends AppCompatActivity {
         greenBOn = findViewById(R.id.greenBON);
         orangeBOn = findViewById(R.id.orangeBON);
         tcp = TCPSingleton.getInstance();
+        gson=new Gson();
+        json=
 
         tapNota = new VerifNota(isBlue);
         isGreen = false;
