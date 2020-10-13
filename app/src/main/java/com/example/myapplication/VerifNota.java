@@ -1,12 +1,26 @@
 package com.example.myapplication;
 
+
 public class VerifNota {
     private boolean isBlue,isGreen,isOrange;
+    private String type;
     public VerifNota(boolean isBlue,boolean isGreen,boolean isOrange){
         this.isBlue=isBlue;
         this.isGreen=isGreen;
         this.isOrange=isOrange;
+        type="Note";
     }
+
+
+    public String getType() {
+        return type;
+    }
+
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 
     public boolean isBlue() {
         return isBlue;

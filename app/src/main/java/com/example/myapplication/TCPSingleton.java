@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class TCPSingleton extends Thread  {
+public class TCPSingleton extends Thread {
 
 
     private static TCPSingleton tcpsingleton;
@@ -29,7 +29,14 @@ public class TCPSingleton extends Thread  {
 
     private Socket socket;
     private BufferedWriter writer;
-    private String mensaje = "";
+    private String mensaje = "0,0";
+    private ConnexionActivity observer;
+
+    //Metodo de subscripcion del observer - el observer es para :
+    public void setCliente(ConnexionActivity observer) {
+        this.observer = observer;
+
+    }
 
 
     public void run() {
@@ -43,12 +50,12 @@ public class TCPSingleton extends Thread  {
             //
             InputStream is = socket.getInputStream();
             OutputStream out = socket.getOutputStream();
+
             writer = new BufferedWriter(new OutputStreamWriter(out));
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-            //
+            //Recepcion del mensaje
             while(true) {
-
 
 
             }
@@ -82,8 +89,10 @@ public class TCPSingleton extends Thread  {
     }
 
     public String getMensaje() {
-
         return mensaje;
     }
+
+
+
 
 }

@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.myapplication.exception.exception;
+import com.google.gson.Gson;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView connectB, connectSuccess;
     private Jugador jugador;
+    private String json;
     private TCPSingleton tcp;
     private boolean connected,connectedPass;
 
@@ -26,20 +28,27 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_connexion_activity);
         connectB = findViewById(R.id.connectB);
         connectSuccess = findViewById(R.id.connectSuccess);
-        tcp = TCPSingleton.getInstance();
-        jugador = new Jugador("Jugador1", "score");
+
+        jugador = new Jugador("Jugador1", 0);
         connectB.setOnClickListener(this);
         connectSuccess.setOnClickListener(this);
         connected = false;
         connectedPass=false;
 
+        tcp = TCPSingleton.getInstance();
+        tcp.setCliente(this);
+        tcp.start();
+
     }
 
     @Override
     public void onClick(View view) {
+        Gson gson= new Gson();
+        json=gson.toJson(jugador);
+
         switch (view.getId()) {
             case R.id.connectB:
-//                tcp.start();
+
                 connected = true;
                 runOnUiThread(
                         ()-> {
@@ -51,7 +60,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                 Log.e("si", "conectado" + connected);
                 break;
             case R.id.connectSuccess:
-
+                    tcp.enviar(json);
                     Intent i = new Intent(this, GuitarPage.class);
                     startActivity(i);
                     break;

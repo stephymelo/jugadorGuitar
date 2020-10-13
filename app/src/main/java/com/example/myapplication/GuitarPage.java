@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 public class GuitarPage extends AppCompatActivity {
     private ImageView blueB, greenB, orangeB, blueBOn, greenBOn, orangeBOn;
     private VerifNota tapNota;
-    boolean tapNotaJugador;
     private String json;
     private TCPSingleton tcp;
     private boolean isGreen, isOrange, isBlue;
