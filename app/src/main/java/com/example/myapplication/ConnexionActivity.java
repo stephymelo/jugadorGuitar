@@ -35,9 +35,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         connected = false;
         connectedPass=false;
 
-        tcp = TCPSingleton.getInstance();
-        tcp.setCliente(this);
-        tcp.start();
+
 
     }
 
@@ -48,7 +46,9 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
         switch (view.getId()) {
             case R.id.connectB:
-
+                tcp = TCPSingleton.getInstance();
+                tcp.setCliente(this);
+                tcp.start();
                 connected = true;
                 runOnUiThread(
                         ()-> {
