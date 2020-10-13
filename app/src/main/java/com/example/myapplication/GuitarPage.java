@@ -33,9 +33,9 @@ public class GuitarPage extends AppCompatActivity {
         orangeBOn = findViewById(R.id.orangeBON);
         tcp = TCPSingleton.getInstance();
         gson=new Gson();
-        json=
 
-        tapNota = new VerifNota(isBlue);
+
+        tapNota = new VerifNota(isBlue,isGreen,isOrange);
         isGreen = false;
         isOrange = false;
         isBlue = false;
@@ -48,22 +48,6 @@ public class GuitarPage extends AppCompatActivity {
 
                         case MotionEvent.ACTION_DOWN:
                             blueB.setVisibility(View.INVISIBLE);
-
-//                            new Thread(
-//                                    () -> {
-//                                        while (true) {
-//                                            while (isBlue) {
-//                                            }
-//                                            try {
-//                                                Thread.sleep(100);
-//                                                tcp.enviar("isBlue");
-//                                            } catch (Exception e) {
-//                                                e.printStackTrace();
-//                                            }
-//                                        }
-//                                    }
-//                            ).start();
-
                             break;
                         case MotionEvent.ACTION_UP:
                             blueB.setVisibility(View.VISIBLE);
