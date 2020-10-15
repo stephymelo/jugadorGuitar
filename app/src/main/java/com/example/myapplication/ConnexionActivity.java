@@ -56,8 +56,6 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                         }
                 );
 
-
-                Log.e("si", "conectado" + connected);
                 break;
             case R.id.connectSuccess:
                     tcp.enviar(json);
@@ -70,7 +68,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
 
     public void pintarConexion() {
-        if (connected == true) {
+        if (connected) {
             try {
                 connectSuccess.setVisibility(View.VISIBLE);
                 throw new exception("no se conecto");

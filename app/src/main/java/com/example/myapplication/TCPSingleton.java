@@ -31,12 +31,18 @@ public class TCPSingleton extends Thread {
     private BufferedWriter writer;
     private String mensaje = "0,0";
     private ConnexionActivity observer;
+    private GuitarPage observer2;
 
     //Metodo de subscripcion del observer - el observer es para :
     public void setCliente(ConnexionActivity observer) {
         this.observer = observer;
 
     }
+    public void setCliente(GuitarPage observer2) {
+        this.observer2 = observer2;
+
+    }
+
 
 
     public void run() {

@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,9 +18,11 @@ public class GuitarPage extends AppCompatActivity {
     private String json;
     private TCPSingleton tcp;
     private boolean isGreen, isOrange, isBlue;
-    private Gson gson;
+    Gson gson;
 
 
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,8 @@ public class GuitarPage extends AppCompatActivity {
         greenBOn = findViewById(R.id.greenBON);
         orangeBOn = findViewById(R.id.orangeBON);
         tcp = TCPSingleton.getInstance();
-        gson=new Gson();
+        tcp.setCliente(this);
+        gson= new Gson();
 
 
         tapNota = new VerifNota(isBlue,isGreen,isOrange);
@@ -41,15 +45,22 @@ public class GuitarPage extends AppCompatActivity {
 
 
         blueB.setOnTouchListener(
+
                 (view, event) -> {
 
                     switch (event.getAction()) {
 
                         case MotionEvent.ACTION_DOWN:
                             blueB.setVisibility(View.INVISIBLE);
+                            tapNota.setBlue(true);
+                            json=gson.toJson(tapNota);
+                            tcp.enviar(json);
                             break;
                         case MotionEvent.ACTION_UP:
                             blueB.setVisibility(View.VISIBLE);
+                            tapNota.setBlue(false);
+                            json=gson.toJson(tapNota);
+                            tcp.enviar(json);
                             break;
                     }
 
@@ -62,13 +73,21 @@ public class GuitarPage extends AppCompatActivity {
                 (view, event) -> {
 
                     switch (event.getAction()) {
-                        case MotionEvent.ACTION_UP:
-                            greenB.setVisibility(View.VISIBLE);
-                            break;
                         case MotionEvent.ACTION_DOWN:
                             greenB.setVisibility(View.INVISIBLE);
+                            tapNota.setGreen(true);
+                            json=gson.toJson(tapNota);
+                            tcp.enviar(json);
 
                             break;
+                        case MotionEvent.ACTION_UP:
+                            greenB.setVisibility(View.VISIBLE);
+                            tapNota.setGreen(false);
+                            json=gson.toJson(tapNota);
+                            tcp.enviar(json);
+
+                            break;
+
                     }
 
                     return true;
@@ -79,12 +98,18 @@ public class GuitarPage extends AppCompatActivity {
                 (view, event) -> {
 
                     switch (event.getAction()) {
-                        case MotionEvent.ACTION_UP:
-                            orangeB.setVisibility(View.VISIBLE);
 
-                            break;
                         case MotionEvent.ACTION_DOWN:
                             orangeB.setVisibility(View.INVISIBLE);
+                            tapNota.setOrange(true);
+                            json=gson.toJson(tapNota);
+                            tcp.enviar(json);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            orangeB.setVisibility(View.VISIBLE);
+                            tapNota.setOrange(false);
+                            json=gson.toJson(tapNota);
+                            tcp.enviar(json);
 
                             break;
                     }
