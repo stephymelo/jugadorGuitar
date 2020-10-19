@@ -29,6 +29,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         connectB = findViewById(R.id.connectB);
         connectSuccess = findViewById(R.id.connectSuccess);
 
+
         jugador = new Jugador("Jugador1", 0);
         connectB.setOnClickListener(this);
         connectSuccess.setOnClickListener(this);

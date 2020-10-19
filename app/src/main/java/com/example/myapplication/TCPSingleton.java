@@ -1,4 +1,6 @@
 package com.example.myapplication;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class TCPSingleton extends Thread {
     private String mensaje = "0,0";
     private ConnexionActivity observer;
     private GuitarPage observer2;
+    private ObserverMessage obs;
 
     //Metodo de subscripcion del observer - el observer es para :
     public void setCliente(ConnexionActivity observer) {
@@ -45,12 +48,14 @@ public class TCPSingleton extends Thread {
 
 
 
+
+
     public void run() {
         try {
 
             //Conexion
             System.out.println("Enviando solicitud de conexion...");
-            socket = new Socket("192.168.0.200", 5000);
+            socket = new Socket("192.168.11.25", 5000);
             System.out.println("Conectamos");
 
             //
@@ -63,6 +68,9 @@ public class TCPSingleton extends Thread {
             //Recepcion del mensaje
             while(true) {
 
+                String line = reader.readLine();
+                obs.readmsg(line);
+                Log.e("STEPHANIE","f"+line);
 
             }
 
@@ -94,9 +102,6 @@ public class TCPSingleton extends Thread {
 
     }
 
-    public String getMensaje() {
-        return mensaje;
-    }
 
 
 
