@@ -9,10 +9,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-public class GuitarPage extends AppCompatActivity {
+public class GuitarPage extends AppCompatActivity implements  ObserverMessage {
     private ImageView blueB, greenB, orangeB, blueBOn, greenBOn, orangeBOn;
     private VerifNota tapNota;
     private String json;
@@ -122,4 +123,14 @@ public class GuitarPage extends AppCompatActivity {
     }
 
 
+    @Override
+public void readmsg(String alo) {
+    Log.e("XXXTENTATION", "it finally works");
+    runOnUiThread(
+            ()->{
+                Toast.makeText(this, alo,Toast.LENGTH_SHORT).show();
+            }
+    );
+
+}
 }

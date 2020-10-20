@@ -55,7 +55,7 @@ public class TCPSingleton extends Thread {
 
             //Conexion
             System.out.println("Enviando solicitud de conexion...");
-            socket = new Socket("192.168.11.25", 5000);
+            socket = new Socket("192.168.0.14", 5000);
             System.out.println("Conectamos");
 
             //
@@ -69,8 +69,8 @@ public class TCPSingleton extends Thread {
             while(true) {
 
                 String line = reader.readLine();
-                obs.readmsg(line);
-                Log.e("STEPHANIE","f"+line);
+                observer2.readmsg(line);
+
 
             }
 
