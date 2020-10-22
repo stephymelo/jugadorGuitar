@@ -34,7 +34,6 @@ public class TCPSingleton extends Thread {
     private String mensaje = "0,0";
     private ConnexionActivity observer;
     private GuitarPage observer2;
-    private ObserverMessage obs;
 
     //Metodo de subscripcion del observer - el observer es para :
     public void setCliente(ConnexionActivity observer) {
@@ -55,7 +54,7 @@ public class TCPSingleton extends Thread {
 
             //Conexion
             System.out.println("Enviando solicitud de conexion...");
-            socket = new Socket("192.168.0.14", 5000);
+            socket = new Socket("10.0.2.2", 5000);
             System.out.println("Conectamos");
 
             //

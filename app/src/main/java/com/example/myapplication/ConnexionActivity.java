@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import com.example.myapplication.exception.exception;
 import com.google.gson.Gson;
 
+import java.util.UUID;
+
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView connectB, connectSuccess;
@@ -19,6 +21,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     private String json;
     private TCPSingleton tcp;
     private boolean connected,connectedPass;
+    private String id;
 
 
 
@@ -29,8 +32,9 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         connectB = findViewById(R.id.connectB);
         connectSuccess = findViewById(R.id.connectSuccess);
 
+        id= UUID.randomUUID().toString();
 
-        jugador = new Jugador("Jugador1", 0);
+        jugador = new Jugador(id, 0);
         connectB.setOnClickListener(this);
         connectSuccess.setOnClickListener(this);
         connected = false;
@@ -59,8 +63,11 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
                 break;
             case R.id.connectSuccess:
-                    tcp.enviar(json);
+
+                tcp.enviar(json);
+
                     Intent i = new Intent(this, GuitarPage.class);
+                    i.putExtra("id",id);
                     startActivity(i);
                     break;
 

@@ -18,6 +18,8 @@ public class GuitarPage extends AppCompatActivity implements  ObserverMessage {
     private VerifNota tapNota;
     private String json;
     private TCPSingleton tcp;
+    private int numeroPantallas;
+    private String id;
     private boolean isGreen, isOrange, isBlue;
     Gson gson;
 
@@ -36,13 +38,15 @@ public class GuitarPage extends AppCompatActivity implements  ObserverMessage {
         orangeBOn = findViewById(R.id.orangeBON);
         tcp = TCPSingleton.getInstance();
         tcp.setCliente(this);
-        gson= new Gson();
-
-
-        tapNota = new VerifNota(isBlue,isGreen,isOrange);
+        numeroPantallas = 1;
+        gson=new Gson();
         isGreen = false;
         isOrange = false;
         isBlue = false;
+        id= getIntent().getExtras().getString("id");
+        tapNota = new VerifNota(isBlue, isGreen, isOrange,id);
+
+
 
 
         blueB.setOnTouchListener(

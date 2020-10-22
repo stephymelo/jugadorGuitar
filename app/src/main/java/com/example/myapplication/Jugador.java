@@ -1,12 +1,12 @@
 package com.example.myapplication;
 
 public class Jugador {
-    private String jugador;
+    private String id;
     private int score;
     private String type;
-    public Jugador(String jugador,int score){
+    public Jugador(String id,int score){
 
-        this.jugador=jugador;
+        this.id=id;
         this.score=score;
         type="Jugador";
 
@@ -26,12 +26,12 @@ public class Jugador {
 
 
 
-    public String getJugador() {
-        return jugador;
+    public String getId() {
+        return id;
     }
 
-    public void setJugador(String jugador) {
-        this.jugador = jugador;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getScore() {
